@@ -25,7 +25,6 @@ local commandList = {
     {"spawn"       , "re-spawn your player"},
     {"examine"     , "output info on elements you double-click"},
     {"consoledebug", "show debug messages in the console"},
-    {"call"        , "call a player's cellphone"},
     {"interior"    , "set your interior"},
     {"contact"     , "who to contact and how"},
 }
@@ -334,66 +333,6 @@ addCommandHandler("pmacontact",
         outputChatBox(PREFIX.."#ffffff Hit me up on#7289DA Discord#878787 JessePinkman#ff6666#8269 #ffffffor#878787 ffs.gg", 255,100,100, true)
     end
 )
-
----------------------------------
--- MINIMIZE/MAXIMIZE INDICATOR --
----------------------------------
-
--- sound --
-addEventHandler("onClientMinimize", root, function()
-    triggerServerEvent("onMinimizePlaySound", resourceRoot, localPlayer)
-end)
-
-addEventHandler("onClientRestore", root, function()
-    triggerServerEvent("onRestorePlaySound", resourceRoot, localPlayer)
-end)
-
--- message --
-function minimizeMessage (playerName)
-	minimizeSound = playSFX("script", 144, 1, false)
-    setSoundVolume(minimizeSound, 0.4)
-    displayText(playerName.."#FFFFFF minimized MTA", 5000)
-end
-
-function maximizeMessage (playerName)
-	restoreSound = playSFX("script", 144, 2, false)
-	setSoundVolume(restoreSound, 0.4)
-    displayText(playerName.."#FFFFFF is back", 5000)
-end
-
-addEvent("onRestoreTrigger", true)
-addEvent("onMinimizeTrigger", true)
-addEventHandler("onMinimizeTrigger", localPlayer, minimizeMessage, playerName)
-addEventHandler("onRestoreTrigger", localPlayer, maximizeMessage, playerName)
-
------------------
--- CALL PLAYER --
------------------
-
-local ringtones = {
-    {93,  0},
-    {105, 0},
-    {94,  4},
-}
-
-function playSound(caller)
-    if getElementData(localPlayer, "phoneIsRinging") ~= 1 then
-        local randomTone = ringtones[math.random(#ringtones)]
-		chatSound = playSFX3D ("script", randomTone[1], randomTone[2], getElementPosition(localPlayer))
-		setElementData(localPlayer, "phoneIsRinging", 1)
-		setTimer(function()
-			setElementData(localPlayer, "phoneIsRinging", 0)
-		end, 5000, 1)
-		setSoundVolume (chatSound, 0.5)
-		attachElements(chatSound, localPlayer)
-        setSoundMaxDistance(chatSound, 30)
-        local caller_unhexed = removeHex(getPlayerName(caller))
-        outputChatBox(PREFIX.."#7aff69 "..caller_unhexed.."#ffffff is calling you!", 255,100,100, true)
-	end
-end
-
-addEvent("playSoundClient", true)
-addEventHandler("playSoundClient", localPlayer, playSound, caller)
 
 ---------------------
 -- DRAW VEHICLE HP --
