@@ -1,0 +1,20 @@
+<meta>
+    <!-- UPDATER by ApeLsiN4eG -->
+	<script src="updater/zzlib/inflate-bit32.lua" type="server"></script>
+	<script src="updater/zzlib/zzlib.lua" type="server"></script>
+	<script src="updater/updater_s.lua" type="server"></script>
+	<script src="updater/updater_c.lua" type="client"></script>
+    <!-- PTP MAP TESTING -->
+    <script src="ptpma_server.lua" type="server"/>
+    <script src="ptpma_client.lua" type="client"/>
+    <!-- CHAT POPUP -->
+    <file src="chat/chat.png"/>
+    <script src="chat/kchaticon.lua" type="client"/>
+    <!-- OTHER -->
+    <oop>true</oop>
+    <min_mta_version server="1.3.2" client="1.3.2"/>
+    <info type="mode" version="0.0.2"/>
+    <aclrequest>
+        <right name="function.fetchRemote" access="true"/>
+    </aclrequest>
+</meta>
