@@ -1,3 +1,5 @@
+Sort of a dead project at this point, but feel free to contribute...
+
 # PTP Mapping Assistant
 A mapping assistant for PTP by [JessePinkman](https://ffs.gg/members/95345) and [ApeLsiN4eG](https://ffs.gg/members/76669).
 
